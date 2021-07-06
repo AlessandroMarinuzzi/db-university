@@ -17,8 +17,10 @@ if ($connection && $connection->connect_error) {
     var_dump($connection);
 }
 
-$sql = "SELECT * FROM courses";
+$name = $_GET['name'];
+$sql = "SELECT * FROM courses WHERE name = '" . $name . "';";
 $result = $connection->query($sql);
+
 var_dump($result);
 
 if($result && $result->num_rows>0){
@@ -36,5 +38,26 @@ if($result && $result->num_rows>0){
 };
 
 $connection->close();
+
 ?>
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="#" method="get">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name" class="form-control" placeholder="insert name" aria-describedby="helpId">
+            <small id="helpId" class="text-muted">insert course name</small>
+        </div>
+    </form>
+
+
+</body>
+</html>
